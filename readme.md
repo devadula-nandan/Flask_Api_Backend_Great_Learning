@@ -1,24 +1,36 @@
-# python version 3.9.9
-# virtual environment created in win 11
-# note if you are using sqlite, sqlite has limitations in certain aspects like sqlite does'nt convert uuid4 to a string while mysql does, so mysql is prefered, if u wanna use sqlite, please typecast the uuids to string
+# Python Version: 3.9.9
+# Virtual Environment Created in Windows 11
 
+**Note:** If you are using SQLite, please be aware that SQLite has limitations in certain aspects. For example, SQLite doesn't convert UUID4 to a string automatically like MySQL does. Therefore, MySQL is preferred. If you want to use SQLite, make sure to typecast the UUIDs to string.
 
-# while creating quiz, if we enter a same question id more than 1 time, only once it will be added
+## Quiz Creation
 
-# there will be some unwanted imports which were initially given, they can be removed, as we don't insert datetime for updated_ts everytime, instead we use sql alchemy's built in onupdate db level feature
+- When creating a quiz, if you enter the same question ID more than once, it will only be added once.
 
-# in attempt quiz api, the responese should be in the following format
+## Unwanted Imports and Datetime
+
+- There may be some unwanted imports initially included. Feel free to remove them as needed.
+- We don't explicitly insert the `updated_ts` (updated timestamp) every time. Instead, we use SQLAlchemy's built-in `onupdate` feature at the database level.
+
+## Attempting a Quiz
+
+When making a request to attempt a quiz, the response should be in the following format:
+
+```json
 {
   "quiz_id": "string",
   "responses": {
-    "question_id": response,
-    "question_id": response,
-    "question_id": response
+    "question_id": "response",
+    "question_id": "response",
+    "question_id": "response"
   },
   "session_id": "string"
 }
+```
 
-# example
+# Example
+
+```json
 {
   "quiz_id": "21013492",
   "responses": {
@@ -28,11 +40,18 @@
   },
   "session_id": "76f3f47d-7c72-4355-b5f2-a64147a6a2db"
 }
+```
 
-# swagger url for api testing and docs
-http://127.0.0.1:8000/swagger-ui/
+# Swagger URL
 
-# improvements
-sign out of all devices can be implemented
-get and set cookies can be used with the response body, for session id for a persistant user experience.
-the 8 digits of uuid4 int is used for id generation in tables, which can be replaced, with auto incrementing primary keys, or the uuid generation can be tweaked, as it is wrapped in a function, and is called wherever required
+You can use the following URL to access the Swagger UI for API testing and documentation:
+
+[http://127.0.0.1:8000/swagger-ui/](http://127.0.0.1:8000/swagger-ui/)
+
+# Improvements
+
+Consider the following improvements for your application:
+
+- Implement a "Sign Out of All Devices" feature to enhance security.
+- Use cookies to get and set the session ID in the response body for a persistent user experience.
+- The current implementation uses the first 8 digits of the UUID4 integer for ID generation in tables. You may want to consider alternatives such as auto-incrementing primary keys or modifying the UUID generation process. The UUID generation logic is wrapped in a function and can be modified wherever required.
