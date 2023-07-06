@@ -1,3 +1,4 @@
+<!-- '{"name":"Flask Api","version": 12,"tech": ["Rest Api", "Flask", "MySql", "ORM"],"tags":["api","backend"],"snapshots":[]}' -->
 # Python Version: 3.9.9
 # Virtual Environment Created in Windows 11
 
